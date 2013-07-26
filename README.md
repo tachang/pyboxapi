@@ -5,6 +5,7 @@ pyboxapi
 Usage
 =====
 
+```
 from pyboxapi import BoxApi
 
 box_api = BoxApi(client_id = 'YOUR_CLIENT_ID', client_secret = 'YOUR_CLIENT_SECRET')
@@ -30,3 +31,4 @@ box_api.create_files_content(file_id = box_file['id'], parent_id=folder_id, name
 # Uploading a new file
 box_api.create_file_content(parent_id=folder_id, name='example.csv', files=files)
 
+```
