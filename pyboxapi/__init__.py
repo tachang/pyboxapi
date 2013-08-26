@@ -10,6 +10,8 @@ import sys
 import mechanize
 
 
+
+
 """
 Steps to use this API:
 
@@ -76,7 +78,9 @@ class BoxApi(object):
         mech.addheaders = [('User-agent', 'User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64; rv:15.0) Gecko/20100101 Firefox/15.0')]
 
         try:
-          response = mech.open("https://app.box.com/api/oauth2/authorize?response_type=code&client_id=%s" % self.client_id)
+          url = "https://app.box.com/api/oauth2/authorize?response_type=code&client_id=%s" % self.client_id
+          log.debug("Opening URL %s" % url)
+          response = mech.open(url)
         except HTTPError, e:
           sys.exit("%d: %s" % (e.code, e.msg))
 
@@ -91,7 +95,7 @@ class BoxApi(object):
 
         mech.select_form(nr=0)
         try:
-          response = mech.submit(name='consent_accept', label='Accept')
+          response = mech.submit()
         except HTTPError, e:
           sys.exit("Accept Failed: %d: %s" % (e.code, e.msg))
 
